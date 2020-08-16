@@ -17,12 +17,6 @@ struct RollOptions: ParsableArguments {
         discussion: "Use this option to override the default value of a six-sided die.",
         valueName: "m"))
     var sides = 6
-
-    @Option(help: "A seed to use for repeatable random generation.")
-    var seed: Int?
-
-    @Flag(name: .shortAndLong, help: "Show all roll results.")
-    var verbose = false
 }
 
 // If you prefer writing in a "script" style, you can call `parseOrExit()` to
