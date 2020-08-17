@@ -43,3 +43,10 @@ You can request a roll using standard tabletop dice notation or within a range. 
 let result1 = try roll("3d6")
 let result2 = try roll("1-4")
 ```
+
+To build a release version and install:
+
+```bash
+swift build --configuration release
+cp -f .build/release/roll /usr/local/bin/roll
+```
