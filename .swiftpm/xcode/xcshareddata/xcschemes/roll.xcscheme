@@ -76,11 +76,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--times 6"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--sides 6"
+            argument = "3d6"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -16,7 +16,6 @@ let package = Package(
         .target(
             name: "myapp",
             dependencies: [
-
                 .product(name: "Dice", package: "Dice"),
             ]),
         .testTarget(
@@ -38,8 +37,9 @@ You can specify number of rolls and faces. In this example you can roll three si
 let result = roll(3, d:6)
 ```
 
-You can request a roll within a range. This `throws` to check for invalid range syntax. Range is a starting integer, followed by a dash, with an ending integer. If you input a reversed range, such as `3-1`, then Dice will correct it to allow proper rolling.
+You can request a roll using standard tabletop dice notation or within a range. This `throws` to check for invalid range syntax. Range is a starting integer, followed by a dash, with an ending integer. If you input a reversed range, such as `3-1`, then Dice will correct it to allow proper rolling.
 
 ```swift
-let result = try rollRange("1-4")
+let result1 = try roll("3d6")
+let result2 = try roll("1-4")
 ```

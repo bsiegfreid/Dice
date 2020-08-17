@@ -17,31 +17,39 @@ final class DiceTests: XCTestCase {
         XCTAssert(result < 31)
     }
     
+    func testRollNotation() {
+        do {
+            let result = try roll("3d6")
+            XCTAssert(result > 2)
+            XCTAssert(result < 31)
+        } catch {
+            XCTFail()
+        }
+    }
+    
     func testRollRange() {
         do {
-            let result = try rollRange("1-4")
+            let result = try roll("1-4")
             XCTAssert(result > 0)
             XCTAssert(result < 5)
         } catch {
             XCTFail()
         }
-
     }
     
     func testRollRangeReverse() {
         do {
-            let result = try rollRange("4-1")
+            let result = try roll("4-1")
             XCTAssert(result > 0)
             XCTAssert(result < 5)
         } catch {
             XCTFail()
         }
-
     }
     
     func testRollRangeZero() {
         do {
-            let result = try rollRange("0-3")
+            let result = try roll("0-3")
             XCTAssert(result > -1)
             XCTAssert(result < 4)
         } catch {
@@ -50,7 +58,7 @@ final class DiceTests: XCTestCase {
     }
     
     func testRollRangeBadInput() {
-        XCTAssertThrowsError(try rollRange("1x4")) { error in
+        XCTAssertThrowsError(try roll("1x4")) { error in
             XCTAssertEqual(error as! DiceError, DiceError.InvalidInput)
         }
     }
