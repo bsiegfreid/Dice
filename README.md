@@ -1,6 +1,6 @@
 # Dice
 
-Dice is a Swift library that provides functions for rolling dice.
+Dice is a Swift library that provides functions for rolling dice and a command line executable. It was created as a sample project using Swift 5.2 and the Swift Package Manager.
 
 This module is designed for use with the Swift Package Manager. In your `Package.swift` file add a reference to this project:
 
@@ -49,4 +49,11 @@ To build a release version and install:
 ```bash
 swift build --configuration release
 cp -f .build/release/roll /usr/local/bin/roll
+```
+
+After installation you can roll the dice from the command line:
+
+```
+roll 3d6
+roll 1-100
 ```
