@@ -1,5 +1,5 @@
 import XCTest
-@testable import Dice
+import Dice
 
 final class DiceTests: XCTestCase {
     
@@ -66,7 +66,9 @@ final class DiceTests: XCTestCase {
     static var allTests = [
         ("testRoll1d6", testRoll1d6),
         ("testRoll3d10", testRoll3d10),
+        ("testRollNotation", testRollNotation),
         ("testRollRange", testRollRange),
+        ("testRollRangeReverse", testRollRangeReverse),
         ("testRollRangeZero", testRollRangeZero),
     ]
 }

@@ -10,7 +10,7 @@ let package = Package(
         .executable(name: "roll", targets: ["roll"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
+        .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.1"),
     ],
     targets: [
         .target(

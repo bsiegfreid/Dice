@@ -1,17 +1,20 @@
 import Foundation
 
-// Seedi based on example provided in Swift Argument Parser open source project
+// Seed based on example provided in Swift Argument Parser open source project
 // Copyright (c) 2020 Apple Inc. and the Swift project authors
 // Licensed under Apache License v2.0 with Runtime Library Exception
 let seed = UInt64.random(in: UInt64.min ... UInt64.max)
 var rng = SplitMix64(seed: UInt64(truncatingIfNeeded: seed))
 // End seed
 
-enum DiceError: Error {
+public enum DiceError: Error {
     case InvalidInput
 }
 
-/// Roll dice.
+/// Roll dice without potential for throwing an exception.
+///
+/// This version takes explicit integers, avoiding the need for potentially throwing an exception.
+///
 /// - Parameter rolls: Number of times to roll the dice.
 /// - Parameter d: Number of sides of the dice.
 /// - Returns: Total of all dice rolls.
@@ -24,6 +27,9 @@ public func roll(_ rolls: Int, d: Int) -> Int {
 }
 
 /// Roll dice using standard tabletop gaming notation or a range.
+///
+/// This version must parse a string which may throw an exception if not properly formed.
+///
 /// - Parameter input: A dice roll notation, such as 3d6, or range, such as 1-100
 /// - Returns: Total of all dice rolls.
 public func roll(_ input: String) throws -> Int {
@@ -40,6 +46,9 @@ public func roll(_ input: String) throws -> Int {
 }
 
 /// Roll dice using standard tabletop gaming notation.
+///
+/// This version must parse a string which may throw an exception if not properly formed.
+///
 /// - Parameter input: A dice roll notation, such as 3d6
 /// - Returns: Total of all dice rolls.
 private func rollNotation(_ input: String) throws -> Int {
