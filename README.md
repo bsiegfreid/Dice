@@ -57,3 +57,9 @@ After installation you can roll the dice from the command line:
 roll 3d6
 roll 1-100
 ```
+
+There is now the option to drop the lowest roll:
+
+```bash
+roll 4d6 --drop-lowest
+```
