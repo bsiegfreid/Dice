@@ -27,6 +27,26 @@ final class DiceTests: XCTestCase {
         }
     }
     
+    func testRollAdd() {
+        do {
+            let result = try roll("1d4+1")
+            XCTAssert(result >= 2)
+            XCTAssert(result <= 5)
+        } catch {
+            XCTFail()
+        }
+    }
+    
+    func testRollSubtract() {
+        do {
+            let result = try roll("1d4-1")
+            XCTAssert(result >= 0)
+            XCTAssert(result <= 3)
+        } catch {
+            XCTFail()
+        }
+    }
+
     func testRollRange() {
         do {
             let result = try roll("1-4")
@@ -67,6 +87,8 @@ final class DiceTests: XCTestCase {
         ("testRoll1d6", testRoll1d6),
         ("testRoll3d10", testRoll3d10),
         ("testRollNotation", testRollNotation),
+        ("testRollAdd", testRollAdd),
+        ("testRollSubtract", testRollSubtract),
         ("testRollRange", testRollRange),
         ("testRollRangeReverse", testRollRangeReverse),
         ("testRollRangeZero", testRollRangeZero),

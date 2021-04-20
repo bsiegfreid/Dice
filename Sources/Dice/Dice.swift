@@ -19,7 +19,7 @@ public enum DiceError: Error {
 /// - Parameter d: Number of sides of the dice.
 /// - Parameter dropLowest: If true the lowest roll will be dropped
 /// - Returns: Total of all dice rolls.
-public func roll(_ rolls: Int, d: Int, dropLowest: Bool = false) -> Int {
+public func roll(_ rolls: Int, d: Int, dropLowest: Bool = false, modifier: Int = 0) -> Int {
     var results: [Int] = [Int]()
     for _ in 1...rolls {
         results.append(Int.random(in: 1...d, using: &rng))
@@ -28,7 +28,7 @@ public func roll(_ rolls: Int, d: Int, dropLowest: Bool = false) -> Int {
         results.sort(by: <)
         results.remove(at: 0)
     }
-    return results.reduce(0, +);
+    return results.reduce(0, +) + modifier;
 }
 
 /// Roll dice using standard tabletop gaming notation or a range.
@@ -39,12 +39,12 @@ public func roll(_ rolls: Int, d: Int, dropLowest: Bool = false) -> Int {
 /// - Parameter dropLowest: If true the lowest roll will be dropped
 /// - Returns: Total of all dice rolls.
 /// - Throws: Throws an error if input can't be parsed
-public func roll(_ input: String, dropLowest: Bool = false) throws -> Int {
+public func roll(_ input: String, dropLowest: Bool = false, modifier: Int = 0) throws -> Int {
     
     // This function serves as the first level of input validation
     
     if input.contains("d") {
-        return try rollNotation(input, dropLowest: dropLowest)
+        return try rollNotation(input, dropLowest: dropLowest, modifier: modifier)
     } else if input.contains("-") {
         return try rollRange(input)
     } else {
@@ -60,7 +60,11 @@ public func roll(_ input: String, dropLowest: Bool = false) throws -> Int {
 /// - Parameter dropLowest: If true the lowest roll will be dropped
 /// - Returns: Total of all dice rolls.
 /// - Throws: Throws an error if input can't be parsed
-private func rollNotation(_ input: String, dropLowest: Bool = false) throws -> Int {
+private func rollNotation(_ input: String, dropLowest: Bool = false, modifier: Int = 0) throws -> Int {
+    
+    var rolls = 1
+    var dice = 6
+    var modifier = 0
     
     guard input.contains("d") else {
         throw DiceError.InvalidInput
@@ -71,8 +75,25 @@ private func rollNotation(_ input: String, dropLowest: Bool = false) throws -> I
     guard parts.count == 2 else {
         throw DiceError.InvalidInput
     }
+    
+    rolls = Int(parts[0])!
+    
+    if parts[1].contains("+") {
+        let endParts = parts[1].components(separatedBy: "+")
+        dice = Int(endParts[0])!
+        modifier = Int(endParts[1])!
+        
+    } else if parts[1].contains("-") {
+        let endParts = parts[1].components(separatedBy: "-")
+        dice = Int(endParts[0])!
+        modifier = -Int(endParts[1])!
 
-    return roll(Int(parts[0])!, d: Int(parts[1])!, dropLowest: dropLowest)
+
+    } else {
+        dice = Int(parts[1])!
+    }
+
+    return roll(rolls, d: dice, dropLowest: dropLowest, modifier: modifier)
 }
 
 /// Return a random number within a range.

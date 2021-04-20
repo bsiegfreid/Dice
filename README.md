@@ -8,7 +8,7 @@ This module is designed for use with the Swift Package Manager. In your `Package
 let package = Package(
     name: "myapp",
     dependencies: [
-        .package(url: "https://github.com/bsiegfreid/Dice", from: "0.1.0"),
+        .package(url: "https://github.com/bsiegfreid/Dice", from: "0.3.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -62,4 +62,9 @@ There is now the option to drop the lowest roll:
 
 ```bash
 roll 4d6 --drop-lowest
+```
+Version 0.3.0 added the ability to pass a roll modifier when using the notation mode:
+
+```bash
+roll 3d6+1
 ```

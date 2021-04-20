@@ -18,8 +18,11 @@ struct Roll: ParsableCommand {
     @Flag(name: .shortAndLong, help: "Drop the lowest roll")
     var dropLowest = false
 
+    @Option(name: .shortAndLong, help: "The number of times to repeat 'phrase'.")
+    var modifier: Int = 0
+
     mutating func run() throws {
-        print(try Dice.roll(input, dropLowest: dropLowest))
+        print(try Dice.roll(input, dropLowest: dropLowest, modifier: modifier))
     }
 }
 
