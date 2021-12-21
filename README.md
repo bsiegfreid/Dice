@@ -8,7 +8,7 @@ This module is designed for use with the Swift Package Manager. In your `Package
 let package = Package(
     name: "myapp",
     dependencies: [
-        .package(url: "https://github.com/bsiegfreid/Dice", from: "0.3.0"),
+        .package(url: "https://github.com/bsiegfreid/Dice", from: "0.4.0"),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
